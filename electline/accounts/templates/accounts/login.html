@@ -10,14 +10,17 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form class="login-form">
+        <form class="login-form" method="POST">
+            {% csrf_token %}
             <div class="form-group">
                 <label for="matricNumber">Matric Number</label>
-                <input type="text" id="matricNumber" name="matricNumber" placeholder="Enter your matric number" required>
+                {{ form.matric_no }}
+                <!-- <input type="text" id="matricNumber" name="matricNumber" placeholder="Enter your matric number" required> -->
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                {{ form.password }}
+                <!-- <input type="password" id="password" name="password" placeholder="Enter your password" required> -->
             </div>
             <button type="submit" class="login-btn">Login</button>
         </form>

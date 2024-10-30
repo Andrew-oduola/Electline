@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 'accounts',
+    # 'elections',
     'accounts.apps.AccountsConfig',
-    'election.apps.ElectionConfig',
+    'elections.apps.ElectionsConfig',
 ]
 
 MIDDLEWARE = [
@@ -103,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'yourapp.backends.MatricNoBackend',  # Custom authentication backend
+    'accounts.backends.MatricNoBackend',  # Custom authentication backend
     'django.contrib.auth.backends.ModelBackend',  # Default Django backend
 ]
 
