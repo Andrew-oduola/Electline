@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <span class="user-info">Matric Number: 12345678</span>
+            <a href="#" class="logout-link">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Vote for Leadership Position</h1>
+        <div class="candidate">
+            <img src="candidate1.jpg" alt="Candidate Picture" class="candidate-img">
+            <div class="candidate-info">
+                <h2>John Doe</h2>
+                <p><strong>Department:</strong> Computer Science</p>
+                <p><strong>Faculty:</strong> Faculty of Science</p>
+                <p class="bio"><strong>Bio:</strong> John is a dedicated student who has shown outstanding leadership qualities...</p>
+            </div>
+            <form class="vote-form">
+                <button type="submit" class="vote-btn">Vote for John Doe</button>
+            </form>
+        </div>
+
+        <div class="candidate">
+            <img src="candidate2.jpg" alt="Candidate Picture" class="candidate-img">
+            <div class="candidate-info">
+                <h2>Jane Smith</h2>
+                <p><strong>Department:</strong> Electrical Engineering</p>
+                <p><strong>Faculty:</strong> Faculty of Engineering</p>
+                <p class="bio"><strong>Bio:</strong> Jane has been actively involved in the engineering society...</p>
+            </div>
+            <form class="vote-form">
+                <button type="submit" class="vote-btn">Vote for Jane Smith</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Leadership Voting System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
