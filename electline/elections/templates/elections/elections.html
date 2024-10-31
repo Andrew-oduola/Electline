@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Available Elections {% endblock %}
+
+{% block content %}
+
+{% include 'navbar.html' %}
+
+<body>
+    <div class="container">
+        <h1>Available Elections</h1>
+        {% for election in elections %}
+        <div class="election">
+            <div class="election-title">{{ election.title }}</div>
+            <div class="election-details">{{ election.description }}</div>
+            <div class="election-date">{{ election.start_date }} - {{ election.end_date }}</div>
+            <button class="vote-button"><a href="{{ election.get_absolute_url }}">Vote Now</a></button>
+        </div>
+        {% endfor %}
+
+    </div>
+</body>
+
+{% include 'footer.html' %}
+
+{% endblock %}

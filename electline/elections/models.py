@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 
 CustomUser = get_user_model()
@@ -7,13 +8,35 @@ CustomUser = get_user_model()
 # Create your models here.
 class Election(models.Model):
     title = models.CharField(max_length=100)
+    slug = models.SlugField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     is_active = models.BooleanField(default=True)
+    allowed_prefix = models.CharField(
+        max_length=100,
+        help_text="Comma-separated list of matric prefixes allowed to vote (e.g., 'CSC, EEE, MTH').",
+        null = True,
+        blank=True
+    )
 
     def __str__(self):
         return self.title
+    
+    def is_voter_allowed(self, matric_number):
+        # Extract the first three letters of the matric number
+        prefix = matric_number[:3].upper()
+        # Check if the prefix is in the allowed prefixes list
+        
+        if self.allowed_prefix is not None:
+            allowed_prefixes = [p.strip() for p in self.allowed_prefix.split(',')]
+            return prefix in allowed_prefixes
+        
+        return True
+    
+    def get_absolute_url(self):
+        return reverse("elections:vote", args=[self.slug])
+    
 
 
 class Candidate(models.Model):
