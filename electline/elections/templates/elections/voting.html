@@ -17,8 +17,12 @@
                 <p><strong>Faculty:</strong> {{ candidate.faculty }}</p>
                 <p class="bio"><strong>Bio:</strong> {{ candidate.bio }} </p>
             </div>
-            <form class="vote-form">
-                <button type="submit" class="vote-btn">Vote for {{ candidate.name}}</button>
+            <form action="{% url 'elections:cast-vote' election.slug candidate.id %}" class="vote-form" method='post'>
+                {% csrf_token %}
+                <button type="submit" class="vote-btn" {% if button_state %}{{ button_state }}{% endif %}>
+                    Vote for {{ candidate.name }}
+                </button>
+                
             </form>
         </div>
         {% empty %}

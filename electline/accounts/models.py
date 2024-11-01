@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, AbstractUser 
+from django.core.exceptions import ValidationError
 
 from .managers import CustomUserManager, is_valid_matric_no
 
@@ -25,7 +26,7 @@ class CustomUser(AbstractUser):
     def clean(self):
         super().clean()
         if not is_valid_matric_no(self.matric_no):
-            raise ValueError("Invalid Matric number format. It should be in the format: ABC/23/1234")
+            raise ValidationError("Invalid Matric number format. It should be in the format: ABC/23/1234")
 
     
     

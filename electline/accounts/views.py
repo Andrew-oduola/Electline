@@ -15,7 +15,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 # Redirect to the voting page
-                return redirect('elections:voting')
+                return redirect('elections:elections')
             else:
                 print('incorrect user')
         else:

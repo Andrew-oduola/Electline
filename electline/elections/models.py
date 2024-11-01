@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.urls import reverse
+from django.core.exceptions import ValidationError
+
 
 
 CustomUser = get_user_model()
@@ -37,6 +39,11 @@ class Election(models.Model):
     def get_absolute_url(self):
         return reverse("elections:vote", args=[self.slug])
     
+    def clean(self) -> None:
+        super().clean()
+        if not (self.end_date > self.start_date):
+            raise ValidationError("End date must be after start date.")
+    
 
 
 class Candidate(models.Model):
@@ -53,7 +60,7 @@ class Candidate(models.Model):
 class Vote(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="votes")
     election = models.ForeignKey(Election, on_delete=models.CASCADE)
-    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
+    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE, related_name='votes')
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -1,10 +1,13 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.core.exceptions import ValidationError
+
 import re
 
 def is_valid_matric_no(matric_no):
     # Define the regular expression pattern
     pattern = r"^[a-zA-Z]{3}/\d{2}/\d{4}$"
     # Check if the matric number matches the pattern
+    # print(bool(re.match(pattern, matric_no))
     return bool(re.match(pattern, matric_no))
 
 class CustomUserManager(BaseUserManager):
@@ -16,7 +19,7 @@ class CustomUserManager(BaseUserManager):
         
         # Check matric number format validity
         if not is_valid_matric_no(matric_no):
-            raise ValueError('Invalid Matric number format. It should be in the format: ABC/23/1234')
+            raise ValidationError('Invalid Matric number format. It should be in the format: ABC/23/1234')
 
         # Create and save user
         user = self.model(matric_no=matric_no)

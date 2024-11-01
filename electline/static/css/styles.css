@@ -183,6 +183,16 @@ input[type="text"], input[type="password"] {
     font-weight: bold;
 }
 
+/* Disabled Button Styles */
+.vote-btn:disabled {
+    background-color: #ccc; /* Light gray color */
+    color: #666; /* Darker gray text */
+    cursor: not-allowed; /* Show not-allowed cursor on hover */
+    opacity: 0.7;
+}
+
+
+
 /* Result Styles */
 .result {
     margin-bottom: 20px;
